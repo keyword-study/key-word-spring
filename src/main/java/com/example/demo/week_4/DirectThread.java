@@ -2,6 +2,9 @@ package com.example.demo.week_4;
 
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 @Component
 public class DirectThread{
     public DirectThread() {
@@ -10,6 +13,11 @@ public class DirectThread{
     public void makeThread(int index){
         MyThread myThread = new MyThread(index);
         myThread.run();
+    }
+    public void executorThread(){
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        Runnable runnable = () -> System.out.println("Thread: " + Thread.currentThread().getName());
+
     }
 }
 
