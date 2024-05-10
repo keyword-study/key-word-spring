@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 
 @SpringBootTest
@@ -16,7 +15,7 @@ class DirectTreadTest {
     private DirectThread directThread;
 
     @Autowired
-    private Executor executor;
+    private Executor executorTestBean;
 
     @Test
     public void directThread(){
@@ -39,9 +38,9 @@ class DirectTreadTest {
         try {
             Runnable runnable = () -> System.out.println("Thread: " + Thread.currentThread().getName());
             // 현재 쓰레드 개수는 1 대기에 개수는 1개
-            executor.execute(runnable);
-            executor.execute(runnable);
-            executor.execute(runnable);
+            executorTestBean.execute(runnable);
+            executorTestBean.execute(runnable);
+            executorTestBean.execute(runnable);
         }catch (RejectedExecutionException e){
             exception = e;
         }
